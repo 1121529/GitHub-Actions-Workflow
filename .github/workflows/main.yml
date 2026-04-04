@@ -30,8 +30,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "YourName"
-          git config --global user.email "your-email@example.com"
+          git config --global user.name "1121529"
+          git config --global user.email "s1121529@mail.yzu.edu.tw"
           git add library_data.json library_data.csv
           git commit -m "Update library data" || exit 0
           git push
