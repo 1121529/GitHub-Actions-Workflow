@@ -3,7 +3,7 @@ import json
 import csv
 
 
-url = "https://stats.moe.gov.tw/files/opendata/106_25.json"
+url = "https://data.ntpc.gov.tw/api/v1/openapi/units/1220000"
 
 def main():
     try:
