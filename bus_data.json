@@ -1,6 +1,6 @@
 {
-    "update_time": "2026-04-05 19:36:00",
+    "update_time": "2026-04-05 19:37:28",
     "data": {
-        "raw_content": ""
+        "raw_content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><townItems>\n<townItem>\n    <towncode>10020010</towncode>\n    <towncode01>I01</towncode01>\n    <townname>東區</townname>\n</townItem>\n\n<townItem>\n    <towncode>10020020</towncode>\n    <towncode01>I02</towncode01>\n    <townname>西區</townname>\n</townItem>\n</townItems>"
     }
 }
