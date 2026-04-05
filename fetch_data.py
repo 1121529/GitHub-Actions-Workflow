@@ -3,7 +3,7 @@ import json
 import csv
 
 
-url = "https://stats.moe.gov.tw/files/opendata/106_25.json"
+url = "https://api.nlsc.gov.tw/other/MarkBufferAnlys/bus/120.634413/24.153282/70"
 
 def main():
     try:
