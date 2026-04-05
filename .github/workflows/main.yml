@@ -1,17 +1,13 @@
-name: Daily Library Data
+name: Daily Library Data Sync
 
 on:
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch: 
+    - cron: '0 0 * * *'  # 每天執行一次
+  workflow_dispatch:      # 允許手動觸發
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -28,11 +24,10 @@ jobs:
       - name: Run data fetcher
         run: python fetch_data.py
 
-
-- name: Commit and push changes
+      - name: Commit and push changes
         run: |
           git config --global user.name "YourName"
           git config --global user.email "your-email@example.com"
-          git add library_data.json library_data.csv
+          git add library_data.json
           git commit -m "Update library data" || exit 0
           git push
