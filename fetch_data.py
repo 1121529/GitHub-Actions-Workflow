@@ -3,7 +3,7 @@ import json
 import datetime
 
 # 新的目標 API 網址 (國土測繪中心 - 公車站環域分析)
-url = "https://api.nlsc.gov.tw/other/MarkBufferAnlys/bus/120.634413/24.153282/70"
+url = "https://api.nlsc.gov.tw/other/MarkBufferAnlys/bus/120.634413/24.153282/500"
 
 def main():
     try:
