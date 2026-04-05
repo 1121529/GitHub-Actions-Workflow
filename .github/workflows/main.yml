@@ -1,5 +1,4 @@
-name: Daily Data Sync
-
+name: Daily Data
 on:
   schedule:
     - cron: '0 0 * * *'  # 每天執行一次
