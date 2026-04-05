@@ -2,8 +2,8 @@ name: Daily Library Data Sync
 
 on:
   schedule:
-    - cron: '0 0 * * *'  
-  workflow_dispatch:     
+    - cron: '0 0 * * *'  # 每天執行一次
+  workflow_dispatch:      # 允許手動觸發
 
 jobs:
   build:
@@ -32,9 +32,6 @@ jobs:
         run: |
           git config --global user.name "YourName"
           git config --global user.email "your-email@example.com"
-          
-          # 將這裡的檔名改成新的 bus_data.json
-          git add busdata.json
-          
-          git commit -m "Update bus station data" || exit 0
+          git add bus_data.json
+          git commit -m "Update library data" || exit 0
           git push
