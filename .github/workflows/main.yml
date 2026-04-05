@@ -32,6 +32,6 @@ jobs:
         run: |
           git config --global user.name "YourName"
           git config --global user.email "your-email@example.com"
-          git add bus_data.json
+          git add road_data.json
           git commit -m "Update library data" || exit 0
           git push
