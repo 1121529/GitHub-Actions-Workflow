@@ -5,6 +5,17 @@ import datetime
 # 新的目標 API 網址 (國土測繪中心 - 公車站環域分析)
 url = "https://api.nlsc.gov.tw/other/MarkBufferAnlys/bus/120.634413/24.153282/500"
 
+# ... 原本的程式碼 ...
+
+def fetch_with_retry(url, max_retries=3):
+    for i in range(max_retries):
+        response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+        if response.text.strip(): # 如果內容不是空的
+            return response.json()
+        print(f"嘗試第 {i+1} 次抓取失敗，資料為空，等待後重試...")
+        time.sleep(2) # 等待 2 秒再試
+    return {"message": "多次嘗試後仍無資料"}
+    
 def main():
     try:
         # 加入 User-Agent，避免某些政府網站阻擋沒有瀏覽器標籤的爬蟲程式
