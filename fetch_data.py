@@ -20,9 +20,7 @@ def main():
         # (有些政府 API 預設回傳 XML，這裡做個安全處理)
         try:
             api_data = response.json()
-        except json.JSONDecodeError:
-            print("注意：此 API 回傳的可能不是標準 JSON，將以純文字記錄")
-            api_data = {"raw_content": response.text}
+
 
         # 💡 加入當前時間，確保每次執行產生的檔案內容都不一樣，Git 才會 Push！
         current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
