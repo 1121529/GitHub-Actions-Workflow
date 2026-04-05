@@ -1,6 +1,6 @@
 {
-    "update_time": "2026-04-05 19:31:02",
+    "update_time": "2026-04-05 19:33:55",
     "data": {
-        "raw_content": ""
+        "raw_content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<townVillageItem>\n    <ctyCode>10007</ctyCode>\n    <ctyName>彰化縣</ctyName>\n    <townCode>10007090</townCode>\n    <townName>芬園鄉</townName>\n    <villageCode>10007090005</villageCode>\n    <villageName>茄荖村</villageName>\n</townVillageItem>\n"
     }
 }
