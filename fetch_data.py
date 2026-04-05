@@ -3,7 +3,7 @@ import json
 import datetime
 
 # 新的目標 API 網址 (國土測繪中心 - 公車站環域分析)
-url = "https://api.nlsc.gov.tw/other/ListTown1/G"
+url = "https://api.nlsc.gov.tw/idc/ListRoadM/B/B01"
 
 # ... 原本的程式碼 ...
 
