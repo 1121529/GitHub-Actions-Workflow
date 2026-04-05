@@ -1,49 +1,51 @@
 import requests
 import json
 import datetime
+import xml.dom.minidom  # 引入處理 XML 美化的模組
 
-# 新的目標 API 網址 (國土測繪中心 - 道路名稱查詢)
 url = "https://api.nlsc.gov.tw/idc/ListRoadM/B/B01"
 
 def main():
     try:
-        # 加入 User-Agent 偽裝成瀏覽器，避免被政府網站阻擋
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-        }
-        
-        # 發送 GET 請求
+        headers = {"User-Agent": "Mozilla/5.0"}
         response = requests.get(url, headers=headers)
+        response.raise_for_status()
         
-        # 列印狀態碼方便你在 GitHub Actions 裡除錯 (200 代表成功)
-        print(f"API 伺服器回應狀態碼: {response.status_code}")
-        response.raise_for_status() 
-        
-        # 檢查伺服器回傳內容是否為空
-        if not response.text.strip():
-            api_data = {"message": "伺服器回傳空值"}
-        else:
-            # 嘗試將回傳資料解析為 JSON；如果政府 API 給的是 XML，則存為文字
-            try:
-                api_data = response.json()
-            except json.JSONDecodeError:
-                print("注意：此 API 回傳的不是標準 JSON (可能是 XML)，將以純文字記錄")
-                api_data = {"raw_content": response.text}
+        content = response.text.strip()
+        final_data = None
 
-        # 加入當前時間，確保每次執行產生的檔案內容都有變動，Git 才會執行 Push
+        # 1. 嘗試解析為 JSON
+        try:
+            final_data = response.json()
+            print("解析成功：資料格式為 JSON")
+        except json.JSONDecodeError:
+            # 2. 如果 JSON 解析失敗，嘗試美化 XML
+            print("非 JSON 格式，嘗試美化 XML...")
+            try:
+                # 使用 minidom 解析並重新生成帶縮排的字串
+                dom = xml.dom.minidom.parseString(content)
+                pretty_xml = dom.toprettyxml(indent="    ") # 設定 4 個空格縮排
+                final_data = {"xml_content": pretty_xml}
+                print("解析成功：資料格式為 XML (已完成美化排版)")
+            except Exception as xml_err:
+                print(f"XML 解析也失敗: {xml_err}")
+                final_data = {"raw_content": content}
+
+        # 3. 加入時間戳記
         current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
-        output_data = {
+        output = {
             "update_time": current_time,
             "api_url": url,
-            "data": api_data
+            "data": final_data
         }
         
-        # 儲存為 JSON 檔案 (檔名改為 road_data.json)
+        # 4. 儲存檔案
         with open('road_data.json', 'w', encoding='utf-8') as f:
-            json.dump(output_data, f, ensure_ascii=False, indent=4)
+            # 這裡的 indent=4 是讓外層的 JSON 漂亮
+            # 裡面的 XML 內容因為上面處理過，也會帶著 \n 與縮排
+            json.dump(output, f, ensure_ascii=False, indent=4)
                 
-        print(f"資料抓取成功！已於 {current_time} 儲存為 road_data.json")
+        print(f"檔案已儲存至 road_data.json")
         
     except Exception as e:
         print(f"發生錯誤: {e}")
