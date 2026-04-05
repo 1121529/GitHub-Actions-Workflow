@@ -1,4 +1,4 @@
-name: Daily Library Data Sync
+name: Daily Data Sync
 
 on:
   schedule:
