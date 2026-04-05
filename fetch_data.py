@@ -34,7 +34,7 @@ def main():
         
         # 儲存為 JSON 檔案 (檔名改為 bus_data.json)
         # 作業規定 JSON 或 CSV 擇一即可，因為這支 API 結構較深，存 JSON 最保險
-        with open('bus_data.json', 'w', encoding='utf-8') as f:
+        with open('busdata.json', 'w', encoding='utf-8') as f:
             json.dump(output_data, f, ensure_ascii=False, indent=4)
                 
         print(f"資料抓取成功！已於 {current_time} 儲存為 bus_data.json")
