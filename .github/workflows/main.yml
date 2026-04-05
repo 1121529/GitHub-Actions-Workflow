@@ -34,7 +34,7 @@ jobs:
           git config --global user.email "your-email@example.com"
           
           # 將這裡的檔名改成新的 bus_data.json
-          git add bus_data.json
+          git add busdata.json
           
           git commit -m "Update bus station data" || exit 0
           git push
