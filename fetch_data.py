@@ -3,7 +3,7 @@ import json
 import csv
 
 
-url = "https://data.ntpc.gov.tw/api/v1/openapi/units/1220000"
+url = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-A0021-001?Authorization=rdec-key-123-45678-011121314"
 
 def main():
     try:
